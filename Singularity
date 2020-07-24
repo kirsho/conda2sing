@@ -1,4 +1,4 @@
-echo 'Bootstrap: docker
+Bootstrap: docker
 From: continuumio/miniconda3
 
 %help
