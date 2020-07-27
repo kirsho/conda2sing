@@ -58,11 +58,11 @@ based on documentation https://singularity.lbl.gov/docs-recipes
 	defname=DEFNAME 						## Set environment name
 	/opt/conda/bin/conda create -n $defname APPS			## package name or python version. 
 	/opt/conda/bin/conda clean --tarballs				## Clean and light weight env
-#	mkdir -p /setupfile						## Create /setupfile directory to save and trace env recipe
-#	mv Singularity /setupfile
-#	cd /setupfile
-#	/opt/conda/bin/conda list -n $defname > $defname_installed_packages.md
-#	/opt/conda/bin/conda env export --no-build -n $defname > $defname.yml
+	mkdir -p /setupfile						## Create /setupfile directory to save and trace env recipe
+	mv Singularity /setupfile
+	cd /setupfile
+	/opt/conda/bin/conda list -n $defname > $defname_installed_packages.md
+	/opt/conda/bin/conda env export --no-build -n $defname > $defname.yml
 
 # set Conda in the PATH
 	echo "PATH definition"
