@@ -19,7 +19,10 @@ APPS=$3
 # download my definition file for singularity
 # For easy push in shubn the definition file is named Singularity
 
-rm Singularity*  && \
+[[ -f Singularity ]] && \
+	echo "A singularity file exist in your folder and is removed" && \
+	rm Singularity* || \
+	echo "let's go" && \
 
 wget https://raw.githubusercontent.com/kirsho/conda2sing/master/Singularity && \
 
