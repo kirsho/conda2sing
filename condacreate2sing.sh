@@ -10,7 +10,7 @@
 # https://github.com/kirsho/Singularity/blob/master/Intro2Singularity.md
 # https://github.com/kirsho/conda2sing/blob/master/condacreate2sing.sh
 # contact : Olivier Kirsh <olivier.kirsh@u-paris.fr>
-# date : 20200727
+# date : 20200727 
 
 SIMG=$1
 DEFNAME=$2
