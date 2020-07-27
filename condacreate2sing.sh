@@ -13,6 +13,8 @@ APPS=$3
 # download my definition file for singularity
 # For easy push in shubn the definition file is named Singularity
 
+rm Singularity  && \
+
 wget https://raw.githubusercontent.com/kirsho/conda2sing/master/Singularity && \
 
 sed -i -e "s/DEFNAME/$2/g" Singularity && \
