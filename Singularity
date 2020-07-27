@@ -17,10 +17,10 @@ based on documentation https://singularity.lbl.gov/docs-recipes
 	Version v1.4 20200724
 	Singularity 3.6.0 local & ifb
 
-%file
+%setup
 # ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-Singularity
-Singularity
+${SINGULARITY_ROOTFS}/Singularity
+
 
 
 %post
