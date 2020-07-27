@@ -22,7 +22,6 @@ based on documentation https://singularity.lbl.gov/docs-recipes
 ${SINGULARITY_ROOTFS}/Singularity
 
 
-
 %post
 # ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 # What is executed during the build process
