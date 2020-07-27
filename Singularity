@@ -37,19 +37,19 @@ based on documentation https://singularity.lbl.gov/docs-recipes
 
 # Create conda env
 	defname=DEFNAME 						## Set environment name
-	/opt/conda/bin/conda create -n $DEFNAME $APPS			## package name or python version. 
+	/opt/conda/bin/conda create -n DEFNAME APPS			## package name or python version. 
 	/opt/conda/bin/conda clean --tarballs				## Clean and light weight env
 	
 # Export FAIR Files
 	cd /setupfile
-	/opt/conda/bin/conda list -n $DEFNAME > $DEFNAME_installed_packages.md
-	/opt/conda/bin/conda env export --no-build -n $DEFNAME > $DEFNAME.yml
+	/opt/conda/bin/conda list -n DEFNAME > DEFNAME_installed_packages.md
+	/opt/conda/bin/conda env export --no-build -n DEFNAME > DEFNAME.yml
 
 
 %environment
 # ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 # set Conda env bin in the PATH	
-	export PATH=/opt/conda/envs/$DEFNAME/bin:$PATH
+	export PATH=/opt/conda/envs/DEFNAME/bin:$PATH
 	
 	
 %runscript
