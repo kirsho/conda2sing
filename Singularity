@@ -14,65 +14,42 @@ based on documentation https://singularity.lbl.gov/docs-recipes
 %labels
 # ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 	Maintainer Olivier Kirsh <olivier.kirsh@u-paris.fr>					
-	Version v1.4 20200728
+	Version v1.5 20200727
 	Singularity 3.6.0 local & ifb
-
-%setup
-# ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-
-mkdir -p ${SINGULARITY_ROOTFS}/setupfile
-
 
 %files
 # ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-
-Singularity /setupfile/Singularity
-
+# Copy files for building
+	Singularity /setupfile/Singularity
 
 %post
 # ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 # What is executed during the build process
-
-# set Conda in the PATH
-	echo "PATH definition"
-	echo "defname=DEFNAME"	
-
-# Edit .bashrc to run conda    	
-	echo ". /opt/conda/etc/profile.d/conda.sh" >> ~/.bashrc		## Enable conda for the current user
-									## Better than $ echo "conda activate" >> ~/.bashrc
-									## or $ export PATH="/opt/miniconda3/bin:$PATH" (not recommanded)
 
 # Set conda channels 
 	/opt/conda/bin/conda config --add channels defaults
 	/opt/conda/bin/conda config --add channels bioconda
 	/opt/conda/bin/conda config --add channels conda-forge
 
-
 # Update conda
 	/opt/conda/bin/conda update -n base conda  			## Optionnal. Or specify version
 
 
-# Conda install
+# Create conda env
 	defname=DEFNAME 						## Set environment name
-	/opt/conda/bin/conda create -n $defname APPS			## package name or python version. 
+	/opt/conda/bin/conda create -n $DEFNAME APPS			## package name or python version. 
 	/opt/conda/bin/conda clean --tarballs				## Clean and light weight env
 	
-	cd /setupfile							## FAIR infos
-	/opt/conda/bin/conda list -n $defname > $defname_installed_packages.md
-	/opt/conda/bin/conda env export --no-build -n $defname > $defname.yml
+# Export FAIR Files
+	cd /setupfile
+	/opt/conda/bin/conda list -n $DEFNAME > $DEFNAME_installed_packages.md
+	/opt/conda/bin/conda env export --no-build -n $DEFNAME > $DEFNAME.yml
 
-# set Conda in the PATH
-#	echo "PATH definition"
-#	defname=DEFNAME							## Set environment name
-#	echo "export PATH=/opt/conda/envs/$defname/bin:$PATH"				## Put the environment in the PATH (no $ conda activate xx required)
-	
 
 %environment
 # ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-# set Conda in the PATH
-	echo "conda activate"
-	defname=DEFNAME	
-	export PATH=/opt/conda/envs/$defname/bin:$PATH						## Set environment name
+# set Conda env bin in the PATH	
+	export PATH=/opt/conda/envs/$DEFNAME/bin:$PATH
 	
 	
 %runscript
