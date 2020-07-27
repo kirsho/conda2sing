@@ -17,6 +17,18 @@ based on documentation https://singularity.lbl.gov/docs-recipes
 	Version v1.4 20200724
 	Singularity 3.6.0 local & ifb
 
+%setup
+# ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+mkdir -p ${SINGULARITY_ROOTFS}/setupfile
+
+
+%files
+# ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+Singularity /setupfile/Singularity
+
+
 %post
 # ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 # What is executed during the build process
@@ -44,8 +56,8 @@ based on documentation https://singularity.lbl.gov/docs-recipes
 	defname=DEFNAME 						## Set environment name
 	/opt/conda/bin/conda create -n $defname APPS			## package name or python version. 
 	/opt/conda/bin/conda clean --tarballs				## Clean and light weight env
-	mkdir -p /setupfile						## Create /setupfile directory to save and trace env recipe
-	mv Singularity /setupfile
+#	mkdir -p /setupfile						## Create /setupfile directory to save and trace env recipe
+#	mv Singularity /setupfile
 	cd /setupfile
 	/opt/conda/bin/conda list -n $defname > $defname_installed_packages.md
 	/opt/conda/bin/conda env export --no-build -n $defname > $defname.yml
