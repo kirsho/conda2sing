@@ -7,7 +7,7 @@ This file is a singularity definition file to create simg with conda
 It starts with a docker image of miniconda continuumio/miniconda3
 It allows direct creation of the env by specifying in arguments of the condacreate2sig.sh script
 1st arg is image name, 2nd is conda env name and 3rd are apps names (as an array, between " " eg "samtools fastqc, star")
-App names shoulf be given as they are present in conda recepies
+App names should be given as they are present in conda recepies
 
 based on documentation https://singularity.lbl.gov/docs-recipes
 
