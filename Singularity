@@ -14,8 +14,8 @@ based on documentation https://singularity.lbl.gov/docs-recipes
 %labels
 # ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 	Maintainer Olivier Kirsh <olivier.kirsh@u-paris.fr>					
-	Version v1.5 20200727
-	Singularity 3.6.0 local & ifb
+	Version v1.6 20220624
+	Apptainer 1.0.0
 
 %files
 # ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
@@ -34,12 +34,14 @@ based on documentation https://singularity.lbl.gov/docs-recipes
 # Update conda
 	/opt/conda/bin/conda update -n base conda  			## Optionnal. Or specify version
 
-
+# Install mamba
+	/opt/conda/bin/conda install -c conda-forge mamba  
+	
 # Create conda env
 	defname=DEFNAME 						## Set environment name
-	/opt/conda/bin/conda create -n DEFNAME APPS			## package name or python version. 
-	/opt/conda/bin/conda clean --tarballs				## Clean and light weight env
-	
+	/opt/conda/bin/mamba create -n DEFNAME APPS			## package name or python version. 
+	/opt/conda/bin/mamba clean --tarballs				## Clean and light weight env
+
 # Export FAIR Files
 	cd /setupfile
 	/opt/conda/bin/conda list -n DEFNAME > DEFNAME_installed_packages.md
